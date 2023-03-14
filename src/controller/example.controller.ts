@@ -13,7 +13,7 @@ export class ExaController {
   }
 
   @Post(`${API_APP_EXAMPLE}/exa`)
-  async postExa(@Body() CreateExaDto: Exa) {
+  async postExa(@Body() CreateExaDto) {
     console.log(CreateExaDto);
     return this.exaService.create(CreateExaDto);
   }
