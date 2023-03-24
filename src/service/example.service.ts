@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, Logger } from '@nestjs/common';
 import { Exa } from '../interfaces/exa.interface';
 // import { ExampleSchema } from '../schemas/example.schema';
 
@@ -9,6 +9,8 @@ export class ExaService {
     @Inject('EXAMPLE_MODEL')
     private exaModel: Model<Exa>,
   ) {}
+
+  private readonly logger = new Logger(ExaService.name);
 
   async create(CreateExaDto: Exa): Promise<Exa> {
     console.log(CreateExaDto);
@@ -20,7 +22,9 @@ export class ExaService {
     return this.exaModel.find().exec();
   }
 
-  getHello(): string {
-    return 'Hello World!';
+  async getHello(): Promise<string> {
+    this.logger.log('getData');
+    const exaData = JSON.stringify({ name: 'hi', id: '1111' });
+    return exaData;
   }
 }
