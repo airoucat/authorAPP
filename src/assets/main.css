@@ -8,4 +8,5 @@
   height: 100%;
   overflow: hidden;
   font-weight: normal;
+  background-color: var(--vt-c-grey);
 }

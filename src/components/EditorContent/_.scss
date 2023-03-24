@@ -1,0 +1,12 @@
+.editorWrapper {
+  height: 100%;
+  border-radius: 5px;
+
+  ::v-deep(.w-e-text-container) {
+    border-radius: 5px;
+  }
+
+  ::v-deep(.w-e-text-container [data-slate-editor] p) { // 引入第三方组件修改局部样式
+    margin: 0;
+  }
+}

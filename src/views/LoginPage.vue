@@ -7,7 +7,7 @@
   const handleGoToHome = () => {
     console.log(route)
     console.log(router)
-    router.push('/home')
+    router.push('/edit')
   }
 </script>
 

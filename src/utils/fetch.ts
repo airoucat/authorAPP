@@ -75,31 +75,27 @@ export const useGetFetch = async<T = any>(url = '', data = {}):Promise<T> => {
     }
   }
 
-  export const usePostFetch = async<T = any>(url = '', data = {}):Promise<T> => {
-    const baseUrl = API_BASE_URL // 基础路径
-    url = baseUrl + url; // 请求地址的拼接
-    console.log(JSON.stringify(data))
-    const requestConfig:RequestInit = {
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-        mode: "cors", // 用来决定是否允许跨域请求  值有 三个 same-origin，no-cors（默认）以及 cores;
-        cache: 'force-cache' // 是否缓存请求资源 可选值有 default 、 no-store 、 reload 、 no-cache 、 force-cache 或者 only-if-cached 。
-    }
+export const usePostFetch = async<T = any>(url = '', data = {}):Promise<T> => {
+const baseUrl = API_BASE_URL // 基础路径
+url = baseUrl + url; // 请求地址的拼接
+console.log(JSON.stringify(data))
+const requestConfig:RequestInit = {
+    credentials: 'include',
+    method: 'POST',
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json'
+    },//根据请求内容不同此处也有不同
+    body: JSON.stringify(data),
+    mode: "cors", // 用来决定是否允许跨域请求  值有 三个 same-origin，no-cors（默认）以及 cores;
+    cache: 'force-cache' // 是否缓存请求资源 可选值有 default 、 no-store 、 reload 、 no-cache 、 force-cache 或者 only-if-cached 。
+}
 
-    console.log(requestConfig)
-
-    try {
-        const response = await fetch(url, requestConfig);
-        console.log(response)
-        const responseJson = await response.json();
-        console.log(responseJson)
-        return responseJson
-    } catch (error) {
-        throw new Error(error)
-    }
-  }
+try {
+    const response = await fetch(url, requestConfig);
+    const responseJson = await response.json();
+    return responseJson
+} catch (error) {
+    throw new Error(error)
+}
+}

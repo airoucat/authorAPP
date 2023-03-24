@@ -1,14 +1,44 @@
 <script lang="ts" setup>
   import { useGetFetch, usePostFetch } from '../../utils/fetch';
+  import EditorContent from '../../components/EditorContent/EditorContent.vue'
+  import { onMounted, onUpdated, ref } from 'vue';
+  import { sendWebSocket, creatWebSocket, closeWebSocket,  } from '../../utils/websocket'
 
-  const data = {
-    name: 'k',
-    id: '1111'
-  }
+    const data = {
+      name: 'k',
+      id: '1111'
+    }
 
-  usePostFetch('/example/exa', data).then( res => {
-    console.log(res)
-  })
+    let getContent = ref('0');
+    // let getContent = '0'
+    // creatWebSocket()
+
+    onMounted(() => {
+      /* usePostFetch('/example/exa', data).then( res => {
+        console.log(res)
+      }) */
+      useGetFetch('/example/exa').then(res=>{
+        console.log(res)
+      })
+
+    })
+
+    onUpdated(()=>{
+      console.log('page update')
+    })
+
+    const handleContentChange = (value:string) => {
+      console.log(JSON.stringify(value))
+      getContent.value = value;
+      // getContent = value;
+    }
+
+    /* const handleSendDataWebSocket = (data:string) => {
+      sendWebSocket({
+        flag: 'test',
+        data:data
+      })
+    } */
 
 
 </script>
@@ -37,7 +67,12 @@
   </nav>
   <div class="contentWrapper">
     <div class="leftWrapper">left </div>
-    <div class="midWrapper">this authorAPP </div>
+    <div class="midWrapper">
+      <EditorContent 
+        :onChange="handleContentChange"
+        :content="getContent"
+      />  
+    </div>
     <div class="rightWrapper">right</div>
   </div>
 </template>
