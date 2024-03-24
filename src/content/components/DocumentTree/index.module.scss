@@ -1,0 +1,58 @@
+.selected {
+  background-color: $primary-grey2;
+}
+
+.treeClass {
+  width: 100%;
+
+  .dropDown {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: all 0.2s; 
+    transform: rotate(0deg)
+  }
+
+  :global(.ant-tree-treenode) {
+    :global(.ant-tree-node-selected) {
+      background-color: unset;
+    }
+
+    :global(.ant-tree-switcher_close) {
+      svg {
+        transform: rotate(-90deg)
+      }
+    }
+
+    :global(.ant-tree-node-content-wrapper) {
+      display: flex;
+      width: calc(100% - 48px - 24px);
+
+      :global(.ant-tree-title) {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        text-align: left;
+      }
+  
+      &:hover {
+        background-color:$primary-grey2;
+      }
+    }
+  }
+
+  .divOnSelected {
+    @extend .selected;
+
+    float: left;
+    margin-left: -52px;
+    position: absolute;
+    width: calc(100% + 48px);
+    height: 24px;
+  }
+}
+
+/**
+ * ###! 为什么transition是0.2s，是因为antd的Tree组件折叠展开就是0.2s过渡
+ */

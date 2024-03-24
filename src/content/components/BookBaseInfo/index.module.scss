@@ -1,0 +1,80 @@
+.addIcon {
+  width: 24px;
+  height: 24px;
+  transform: translateY(50%);
+  fill: $primary-grey3;
+}
+/**
+* ###!
+* 当svg文件内编写了fill属性后css里再编写fill会无效，与此类似的还有stroke、stop-color等，为填充性属性
+*
+*/
+.bookInfoBoder {
+  &:hover {
+    box-shadow: 3px 3px 2px $primary-grey3;
+  }
+
+  margin: 0;
+  border: 1px solid $border-color;
+  height: 3rem;
+  border-radius: $border-radius;
+  background-color: $primary-white;
+
+  .book {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > div {
+      &:first-child {
+        width: 40%;
+        padding-left: 0.5rem;
+        display: -webkit-box;
+        word-break: break-word;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &:nth-child(2) {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        width: 20%;
+
+        & > label {
+          flex-shrink: 0;
+          flex-basis: auto;
+          text-overflow: ellipsis;
+          margin-right: 0.3rem;
+          padding: 0.1rem 0.25rem;
+          border: 1px solid $border-color;
+          border-radius: $border-radius;
+        }
+
+        & > div {
+          float: left;
+        }
+      }
+
+      &:nth-child(3) {
+        width: 35%;
+      }
+    }
+  }
+}
+/**
+* ###?
+* 在实装多行文本隐藏并添加省略号时发现各路教程普遍给的方案都是
+* {
+*   display: -webkit-box;
+*   -webkit-box-orient: vertical;
+*   -webkit-line-clamp: 3;
+*   overflow: hidden;
+*   text-overflow: ellipsis;
+* }
+* 但是没有起效，仔细查看浏览器页面发现隐藏与换行有些不对劲，故又加上 word-break: break-word; 方可，
+* 后续发现是测试用例的缘故，一开始的测试用例是一段连续字符串，换成全中文或者有间隔的英文即使不加这个也可以正常生效
+*/

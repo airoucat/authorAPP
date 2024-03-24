@@ -1,0 +1,81 @@
+.wrapper {
+  height: 100%;
+
+  .antLayoutHeader {
+    padding-inline: unset;
+    background-color: $primary-grey;
+
+    & >ul {
+      background-color: $primary-grey;
+      padding: 0 2rem;
+
+      li {
+        padding-inline: 1rem;
+      }
+
+      span {
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        background-color: $primary-white;
+        height: max-content;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+
+  .logo {
+    width: 4rem;
+    height: 4rem;
+    float: left;
+  }
+
+  .antContentWrapper {
+    padding: 0 3rem;
+  }
+
+  .contentWrapper {
+    /* margin-top: 1rem; */
+    height: 90%;
+  
+    .leftWrapper {
+      float: left;
+      width: calc(20% - 6px);
+      margin-right: 5px;
+      height: 100%;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      background-color: $primary-white;
+  
+    }
+    
+    .midWrapper {
+      float: left;
+      width: 60%;
+      height: 100%;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      background-color: $primary-white;
+    }
+    
+    .rightWrapper {
+      float: left;
+      width: calc(20% - 6px);
+      height: 100%;
+      margin-left: 5px;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      background-color: $primary-white;
+    }
+    
+  }
+}
+
+.divOnSelected {
+  background-color: $primary-grey3;
+
+  :global(.ant-tree-node-content-wrapper) {
+    &:hover {
+      background-color:$primary-grey3 !important;
+    }
+  }
+}
