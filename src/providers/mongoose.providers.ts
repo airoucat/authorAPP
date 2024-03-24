@@ -1,8 +1,8 @@
-import * as mongoose from 'mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 
-export const DatabaseProviders = [
-  {
-    provide: 'DATABASE_CONNECTION',
-    useFactory: () => mongoose.connect('mongodb://127.0.0.1/nest'),
-  },
-];
+export const mongoDBProviders = MongooseModule.forRootAsync({
+  imports: [],
+  useFactory: () => ({
+    uri: process.env.MONGODB_URI, // 从环境变量中获取 URI
+  }),
+});

@@ -1,12 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './module/app.module';
-// import { websocket } from './common/websocket';
-// import { WsAdapter } from '@nestjs/platform-ws';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: ['log', 'error', 'debug', 'warn', 'verbose'],
-  });
+  const app = await NestFactory.create(AppModule);
   const origins = [`http://localhost:5173`];
   app.enableCors({
     // origin: origins,
@@ -16,8 +14,7 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 204,
   }); // 详细见https://github.com/expressjs/cors#configuring-cors-asynchronously
-  // 后面需要修改写法方便扩展,而且还有很多不清楚
-  // app.useWebSocketAdapter(new WsAdapter(app));
-  await app.listen(3000);
+  // 后面需要修改写法方便扩展,而且还有很多不清楚s
+  await app.listen(process.env.PORT);
 }
 bootstrap();
